@@ -5,7 +5,7 @@ import java.lang.Thread.sleep
 
 class VerificationEngine(
     private val httpClient : HttpClient,
-    private val delta : Long = 1*60*60*1000
+    private val delta : Long = 1.hoursInMillis()
 ) {
     private val IF_BASE_URL =  "https://hubuspinovacao.if.usp.br"
     private val STI_BASE_URL = "https://hubusp.inovacao.usp.br"
