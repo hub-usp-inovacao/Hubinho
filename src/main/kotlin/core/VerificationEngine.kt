@@ -45,15 +45,17 @@ class VerificationEngine(
         }
     }
 
+    private suspend fun iterate() {
+        println("oi")
+        verifyIfFrontend()
+        verifyStiFrontend()
+        verifyIfBackend()
+        verifyStiBackend()
+    }
+
     suspend fun loop() {
-
         while(true) {
-            println("oi")
-            verifyIfFrontend()
-            verifyStiFrontend()
-            verifyIfBackend()
-            verifyStiBackend()
-
+            iterate()
             sleep(delta)
         }
     }
