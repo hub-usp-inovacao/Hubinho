@@ -6,6 +6,7 @@ val ktor_version : String by project
 plugins {
     kotlin("jvm") version "1.6.10"
     application
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "me.note"
@@ -15,6 +16,7 @@ repositories {
     mavenCentral()
     maven(url = "https://jitpack.io/")
     maven(url = "https://jcenter.bintray.com/")
+    gradlePluginPortal()
 }
 
 dependencies {

@@ -5,6 +5,7 @@ import java.lang.Thread.sleep
 
 class VerificationEngine(
     private val httpClient : HttpClient,
+    private val notifier: Notifier,
     private val delta : Long = 1*60*60*1000
 ) {
     private val IF_BASE_URL =  "https://hubuspinovacao.if.usp.br"
@@ -14,7 +15,7 @@ class VerificationEngine(
         try {
             ServerRunning(IF_BASE_URL, httpClient).run()
         } catch (e: VerificationException) {
-            println(e.message)
+            notifier.sendText(e.message!!)
         }
     }
 
@@ -22,7 +23,7 @@ class VerificationEngine(
         try {
             ServerRunning(STI_BASE_URL, httpClient).run()
         } catch (e: VerificationException) {
-            println(e.message)
+            notifier.sendText(e.message!!)
         }
     }
 
@@ -32,7 +33,7 @@ class VerificationEngine(
             OldCatalogReturningJson("$IF_BASE_URL/api/disciplines", httpClient).run()
             NewCatalogReturningJson("$IF_BASE_URL/api/catalog/disciplines", httpClient).run()
         } catch (e: VerificationException) {
-            println(e.message)
+            notifier.sendText(e.message!!)
         }
     }
 
@@ -41,14 +42,14 @@ class VerificationEngine(
             ServerRunning("$STI_BASE_URL/api", httpClient).run()
             OldCatalogReturningJson("$STI_BASE_URL/api/disciplines", httpClient).run()
         } catch (e: VerificationException) {
-            println(e.message)
+            notifier.sendText(e.message!!)
         }
     }
 
     suspend fun loop() {
 
         while(true) {
-            println("oi")
+            notifier.sendText("VRUM to executando")
             verifyIfFrontend()
             verifyStiFrontend()
             verifyIfBackend()

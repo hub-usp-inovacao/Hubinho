@@ -1,4 +1,5 @@
 
+import app.BotImpl
 import core.VerificationEngine
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -11,6 +12,11 @@ suspend fun main() {
             json()
         }
     }
+    
+    val token = System.getenv("TELEGRAM_BOT_TOKEN")
+    val chatId= System.getenv("TELEGRAM_CHAT_ID").toLong()
+    val bot = BotImpl(token,chatId)
 
-    VerificationEngine(httpClient = client).loop()
+    VerificationEngine(httpClient = client,notifier = bot).loop()
+
 }
