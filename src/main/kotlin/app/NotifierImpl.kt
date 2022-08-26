@@ -4,7 +4,7 @@ import com.github.kotlintelegrambot.bot
 import com.github.kotlintelegrambot.entities.ChatId
 import core.Notifier
 
-class BotImpl (
+class NotifierImpl (
     tokenCode: String,
     chatId: Long,
 
