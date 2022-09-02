@@ -17,6 +17,6 @@ suspend fun main() {
     val chatId= System.getenv("TELEGRAM_CHAT_ID").toLong()
     val bot = NotifierImpl(token,chatId)
 
-    VerificationEngine(httpClient = client,notifier = bot).loop()
+    VerificationEngine(httpClient = client, notifier = bot).loop()
 
 }
