@@ -1,6 +1,8 @@
 package app
 
 import com.github.kotlintelegrambot.bot
+import com.github.kotlintelegrambot.dispatch
+import com.github.kotlintelegrambot.dispatcher.command
 import com.github.kotlintelegrambot.entities.ChatId
 import core.Notifier
 
@@ -17,8 +19,13 @@ class NotifierImpl (
         this.chatId = ChatId.fromId(chatId)
         this.bot = bot {
             token = tokenCode
-
+            dispatch {
+                command("status") {
+                    sendText("Running")
+                }
+            }
         }
+        this.bot.startPolling()
     }
     override fun sendText(text: String){
         bot.sendMessage(chatId,text)
