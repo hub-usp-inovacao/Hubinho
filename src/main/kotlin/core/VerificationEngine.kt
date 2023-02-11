@@ -47,9 +47,8 @@ class VerificationEngine(
     }
 
     suspend fun loop() {
-
+        notifier.sendText("VRUM to executando")
         while(true) {
-            notifier.sendText("VRUM to executando")
             verifyIfFrontend()
             verifyStiFrontend()
             verifyIfBackend()
